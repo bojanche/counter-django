@@ -1,19 +1,31 @@
 {% extends 'base.html' %}
 {% block countercontent %}
 <div class="bojan">Bojan</div>
-
+<div id="chat-log"></div><br>
 
 {% block script %}
   <script>
     var socket = new WebSocket('ws://' + window.location.host + '/ws/count/');
 
+    document.getElementById('chat-log').innerHTML += 'Boki'+'\n';
+
     socket.onopen = function open() {
       console.log('WebSockets connection created.');
+    };
+
+    socket.onmessage = function(e) {
+    const data = e.data;
+    console.log('Dosli podaci '+e.data);
+    document.querySelector('#chat-log').value += (data.message + 'Boki'+'\n');
     };
 
     if (socket.readyState == WebSocket.OPEN) {
       socket.onopen();
     }
+
+    socket.onclose = function(e) {
+    console.error('Chat socket closed unexpectedly');
+    };
   </script>
 {% endblock script %}
 
