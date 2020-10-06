@@ -7,7 +7,9 @@ from channels.consumer import AsyncConsumer
 class CountConsumer(AsyncConsumer):
     async def connect(self, event):
         print("Connected ", event)
-        self.accept()
+        await self.send({
+            "type": "websocket.accept"
+        })
 
     async def disconnect(self, event):
         print("Disconnected ", event)
