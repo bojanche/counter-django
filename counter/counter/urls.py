@@ -19,6 +19,6 @@ from occupancy import views
 
 urlpatterns = [
     path('', views.index, name="Index"),
-    path('/settings', include('occupancy.urls')),
+    path('settings/', include('occupancy.urls')),
     path('admin/', admin.site.urls),
 ]
