@@ -1,13 +1,18 @@
+import asyncio
+import json
 from channels.generic.websocket import WebsocketConsumer
+from channels.consumer import AsyncConsumer
 
 
-class CountConsumer(WebsocketConsumer):
-    def connect(self):
+class CountConsumer(AsyncConsumer):
+    async def connect(self, event):
+        print("Connected ", event)
         self.accept()
 
-    def disconnect(self, close_code):
+    async def disconnect(self, event):
+        print("Disconnected ", event)
         pass
 
-    def receive(self, text_data=None):
+    async def receive(self, event):
         message = 'Bojan Websocket'
-        self.send(text_data=message)
+        self.send(message)

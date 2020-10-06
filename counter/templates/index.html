@@ -5,17 +5,20 @@
 
 {% block script %}
   <script>
-    var socket = new WebSocket('ws://' + window.location.host + '/ws/count/');
+//Websocket skripte
 
+    var socket = new WebSocket('ws://' + window.location.host + '/ws/count/');
     document.getElementById('chat-log').innerHTML += 'Boki'+'\n';
 
+/* metod za onopen */
     socket.onopen = function open() {
-      console.log('WebSockets connection created.');
+      console.log('WebSockets connection created. ', e);
     };
 
+/* metod za onmessage */
     socket.onmessage = function(e) {
+    console.log('Dosli podaci ', e);
     const data = e.data;
-    console.log('Dosli podaci '+e.data);
     document.querySelector('#chat-log').value += (data.message + 'Boki'+'\n');
     };
 
@@ -23,9 +26,17 @@
       socket.onopen();
     }
 
+/* metod za onclose */
     socket.onclose = function(e) {
-    console.error('Chat socket closed unexpectedly');
+    console.log('Zatvaram socket ',e);
     };
+
+/* metod za error */
+    socket.onerror = function(e) {
+    console.log('Greska za socket ',e);
+    };
+
+
   </script>
 {% endblock script %}
 
