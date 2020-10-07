@@ -6,33 +6,44 @@
 {% block script %}
   <script>
 //Websocket skripte
+    var wsStart = 'ws://'
+    var loc = window.location
+    var pathname = '/count/'
+    if (loc.protocol == 'https:') {
+    wsStart = 'wss://'
+    }
 
-    var socket = new WebSocket('ws://' + window.location.host + '/ws/count/');
+
+    var endpoint = wsStart+loc.host+pathname
+    console.log(endpoint)
+
+    const count_socket = new WebSocket(endpoint);
+
     document.getElementById('chat-log').innerHTML += 'Boki'+'\n';
 
 /* metod za onopen */
-    socket.onopen = function open() {
+    count_socket.onopen = function open(e) {
       console.log('WebSockets connection created. ', e);
     };
 
 /* metod za onmessage */
-    socket.onmessage = function(e) {
+    count_socket.onmessage = function(e) {
     console.log('Dosli podaci ', e);
     const data = e.data;
     document.querySelector('#chat-log').value += (data.message + 'Boki'+'\n');
     };
 
-    if (socket.readyState == WebSocket.OPEN) {
-      socket.onopen();
-    }
+/*    if (count_socket.readyState == WebSocket.OPEN) {
+      count_socket.onopen();
+    } */
 
 /* metod za onclose */
-    socket.onclose = function(e) {
+    count_socket.onclose = function(e) {
     console.log('Zatvaram socket ',e);
     };
 
 /* metod za error */
-    socket.onerror = function(e) {
+    count_socket.onerror = function(e) {
     console.log('Greska za socket ',e);
     };
 

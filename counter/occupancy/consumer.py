@@ -4,11 +4,16 @@ from channels.generic.websocket import WebsocketConsumer
 from channels.consumer import AsyncConsumer
 
 
-class CountConsumer(AsyncConsumer):
-    async def connect(self, event):
-        print("Connected ", event)
+class CountConsumer(WebsocketConsumer):
+    async def connect(self):
+        print("Connected ")
+        # await self.accept()
         await self.send({
             "type": "websocket.accept"
+        })
+        await asyncio.sleep(10)
+        await self.send({
+            "type": "websocket.close"
         })
 
     async def disconnect(self, event):
