@@ -6,10 +6,6 @@ from channels.exceptions import StopConsumer
 from channels.layers import get_channel_layer
 
 
-
-channel_layer = get_channel_layer()
-
-
 class CountConsumer(AsyncConsumer):
     async def websocket_connect(self, event):
         print("Connected ")
