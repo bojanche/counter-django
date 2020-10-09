@@ -8,7 +8,6 @@
 //Websocket skripte
 
     var socket = new WebSocket('ws://' + window.location.host + '/ws/count/');
-    document.getElementById('chat-log').innerHTML += 'Boki'+'\n';
 
 /* metod za onopen */
     socket.onopen = function open() {
@@ -19,7 +18,8 @@
     socket.onmessage = function(e) {
     console.log('Dosli podaci ', e);
     const data = e.data;
-    document.querySelector('#chat-log').value += (data.message + 'Boki'+'\n');
+    console.log(data);
+    document.getElementById('chat-log').innerHTML += (data + 'Boki'+'\n');
     };
 
     if (socket.readyState == WebSocket.OPEN) {
