@@ -19,7 +19,7 @@
     console.log('Dosli podaci ', e);
     const data = e.data;
     console.log(data);
-    document.getElementById('chat-log').innerHTML += (data + 'Boki'+'\n');
+    document.getElementById('chat-log').innerHTML = (data + 'Boki'+'\n');
     };
 
     if (socket.readyState == WebSocket.OPEN) {

@@ -9,12 +9,13 @@ class CountConsumer(AsyncConsumer):
         await self.send({
             "type": "websocket.accept"
         })
+        boki = 0
         while True:
+            boki = boki + 1
             await asyncio.sleep(3)
-            print("Entered loop")
             await self.send({
                 "type": "websocket.send",
-                "text": "Hello world"
+                "text": "Hello world "+str(boki)
             })
 
 
