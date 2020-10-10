@@ -1,10 +1,47 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block countercontent %}
-<div class="bojan">Bojan</div>
-<div id="chat-log"></div><br>
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-4">
+            <div class="logo">
+                <img src="{% static 'images/Logo.png' %}"></img>
+            </div>
+            </div>
+          <div class="col-md-8">
+            <div class="textual">
+              <b>Office occupancy</b> <br>
+              <div class="small">
+                <div class="datum" id="datum">|&nbsp;</div>
+                <div class="vreme" id="vreme"></div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-12">
+            <div class="middleone">
+              <center>Currently there are &nbsp;&nbsp;&nbsp;&nbsp;<span class="bigorange" id="counter-log" onmousedown="WhichButton(event)"></span>&nbsp;&nbsp;&nbsp;&nbsp; people on the 4<sup>th</sup> floor</center>
+            </div>
+
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-3 low-left"><img src="{% static 'images/covekzena.png' %}" width=250px></img></div>
+          <div class="col-md-5"></div>
+          <div class="col-md-3 low-right"><img src="{% static 'images/kompjuteras.png' %}" width=500px></img></div>
+      </div>
+  </div>
 
 {% block script %}
   <script>
+//Skripta za mishonju
+
+function WhichButton(event) {
+    poruka = event.button
+    return poruka;
+}
+
 //Websocket skripte
 
     var socket = new WebSocket('ws://' + window.location.host + '/ws/count/');
@@ -19,7 +56,7 @@
     console.log('Dosli podaci ', e);
     const data = e.data;
     console.log(data);
-    document.getElementById('chat-log').innerHTML = (data + 'Boki'+'\n');
+    document.getElementById('counter-log').innerHTML = (data +'\n');
     };
 
     if (socket.readyState == WebSocket.OPEN) {
@@ -35,9 +72,21 @@
     socket.onerror = function(e) {
     console.log('Greska za socket ',e);
     };
-
-
   </script>
+<script>
+  var myVar = setInterval(function() {
+myTimer();
+    }, 1000);
+
+          function myTimer() {
+            var d = new Date();
+            var day = d.getDate();
+            var month = d.getMonth()+1;
+            var year = d.getFullYear();
+            document.getElementById("vreme").innerHTML = d.toLocaleTimeString();
+            document.getElementById("datum").innerHTML = day+"/"+month+"/"+year+" |&nbsp;";
+          }
+        </script>
 {% endblock script %}
 
 
