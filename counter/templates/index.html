@@ -35,16 +35,19 @@
 
 {% block script %}
   <script>
-//Skripta za mishonju
-
-function WhichButton(event) {
-    poruka = event.button
-    return poruka;
-}
 
 //Websocket skripte
 
     var socket = new WebSocket('ws://' + window.location.host + '/ws/count/');
+
+//Skripta za mishonju
+var poruka = 307;
+
+function WhichButton(event) {
+    poruka = event.button;
+    console.log(poruka);
+}
+
 
 /* metod za onopen */
     socket.onopen = function open() {

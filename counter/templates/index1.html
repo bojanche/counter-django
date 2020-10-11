@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+	   <link rel="stylesheet" href="css/bootstrap.min.css">
+	    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>S&ST - Office occupancy counter</title>
+  </head>
+  <body>
+<!-- by Bojan® -->
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-4">
+            <div class="logo">
+                <img src="images/Logo.png"></img>
+            </div>
+            </div>
+          <div class="col-md-8">
+            <div class="textual">
+              <b>Office occupancy</b> <br>
+              <div class="small">
+                <div class="datum" id="datum">|&nbsp;</div>
+                <div class="vreme" id="vreme"></div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-12">
+            <div class="middleone">
+              <center>Currently there are &nbsp;&nbsp;&nbsp;&nbsp;<span class="bigorange">53</span>&nbsp;&nbsp;&nbsp;&nbsp; people on the 4<sup>th</sup> floor</center>
+            </div>
+
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-3 low-left"><img src="images/covekzena.png" width=250px></img></div>
+          <div class="col-md-5"></div>
+          <div class="col-md-3 low-right"><img src="images/kompjuteras.png" width=500px></img></div>
+      </div>
+  </div>
+</body>
+
+  <script>
+  var myVar = setInterval(function() {
+myTimer();
+    }, 1000);
+
+          function myTimer() {
+            var d = new Date();
+            var day = d.getDate();
+            var month = d.getMonth()+1;
+            var year = d.getFullYear();
+            document.getElementById("vreme").innerHTML = d.toLocaleTimeString();
+            document.getElementById("datum").innerHTML = day+"/"+month+"/"+year+" |&nbsp;";
+            document.getElementById("month").innerHTML = month;
+            document.getElementById("year").innerHTML = year;
+
+          }
+        </script>
+</html>
