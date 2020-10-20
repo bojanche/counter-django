@@ -9,6 +9,7 @@ html {
      height: 99%;
      /* font-family: GraphikRegular; */
      font-size: 83px;
+     color: #000;
 }
 
 .main-wrapper {
@@ -25,7 +26,6 @@ html {
   float: left;
   padding-top: 50px;
   padding-left: 250px;
-
 }
 
 .small {
@@ -52,6 +52,7 @@ html {
 
 .datum {
   float: left;
+  color: #000;
 }
 
 .vreme {

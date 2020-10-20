@@ -43,7 +43,7 @@ def get_result(adres):
         entry = 0
         leave = 0
     finally:
-        # print("7. Probam browser izlaz: ", datetime.now())
+        print("7. Probam browser izlaz: ", datetime.now())
         browser.quit()
     # print("8. Izasao i pucam rezultat: ", datetime.now(), entry-leave)
     return entry-leave
@@ -57,9 +57,9 @@ class CountConsumer(AsyncConsumer):
         })
         boki = 0
         while True:
-            boki = get_result(adresa)
-            # print("9. Saljem: ", datetime.now(), boki)
-            await asyncio.sleep(1)
+            boki = 9 #get_result(adresa)
+            print("9. Saljem: ", datetime.now(), boki)
+            await asyncio.sleep(3)
             await self.send({
                 "type": "websocket.send",
                 "text": str(boki)

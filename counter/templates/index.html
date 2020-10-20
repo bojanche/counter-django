@@ -38,20 +38,13 @@
 
 //Websocket skripte
 
-    var socket = new WebSocket('ws://' + window.location.host + '/ws/count/');
-
-//Skripta za mishonju
-var poruka = 307;
-
-function WhichButton(event) {
-    poruka = event.button;
-    console.log(poruka);
-}
-
+    var socket = new WebSocket('ws://' + window.location.host + '/count/');
 
 /* metod za onopen */
-    socket.onopen = function open() {
-      console.log('WebSockets connection created. ');
+    socket.onopen = function(e) {
+      console.log('WebSockets connection created. ', e);
+      socket.send("*****************************Bojan");
+
     };
 
 /* metod za onmessage */
@@ -62,9 +55,10 @@ function WhichButton(event) {
     document.getElementById('counter-log').innerHTML = (data +'\n');
     };
 
-    if (socket.readyState == WebSocket.OPEN) {
+/*    if (socket.readyState == WebSocket.OPEN) {
       socket.onopen();
     }
+*/
 
 /* metod za onclose */
     socket.onclose = function(e) {
@@ -75,7 +69,22 @@ function WhichButton(event) {
     socket.onerror = function(e) {
     console.log('Greska za socket ',e);
     };
+
   </script>
+
+<script>
+//Skripta za mishonju
+var poruka = 307;
+    function WhichButton(event) {
+    event.preventDefault();
+    poruka = event.button;
+    console.log(poruka);
+}
+
+
+</script>
+
+
 <script>
   var myVar = setInterval(function() {
 myTimer();
