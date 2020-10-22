@@ -18,4 +18,4 @@ application = ProtocolTypeRouter({
         )
     )
 })
-
+print("Protokol: ",application.application_mapping)

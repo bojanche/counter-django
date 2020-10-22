@@ -58,7 +58,7 @@ class CountConsumer(AsyncConsumer):
         boki = 0
         while True:
             boki = 9 #get_result(adresa)
-            print("9. Saljem: ", datetime.now(), boki)
+            # print("9. Saljem: ", datetime.now(), boki)
             await asyncio.sleep(3)
             await self.send({
                 "type": "websocket.send",

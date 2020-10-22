@@ -43,15 +43,13 @@
 /* metod za onopen */
     socket.onopen = function(e) {
       console.log('WebSockets connection created. ', e);
-      socket.send("*****************************Bojan");
-
     };
 
 /* metod za onmessage */
     socket.onmessage = function(e) {
-    console.log('Dosli podaci ', e);
+//    console.log('Dosli podaci ', e);
     const data = e.data;
-    console.log(data);
+//    console.log(data);
     document.getElementById('counter-log').innerHTML = (data +'\n');
     };
 
@@ -63,6 +61,7 @@
 /* metod za onclose */
     socket.onclose = function(e) {
     console.log('Zatvaram socket ',e);
+    socket.send("Zatvaranje soketa");
     };
 
 /* metod za error */
